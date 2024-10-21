@@ -1,0 +1,33 @@
+import requests
+import json
+
+# Replace with your WordPress site URL
+base_url = "https://wallshoot.com/wp-json/wp/v2/posts"
+
+# Replace with your application credentials
+username = "Edo1500#"
+password = "eaRj M6dd hOD0 iOjo ung4 2JFG"
+
+# Data for the new post
+post_data = {
+    "title": "Sample Post Title",
+    "content": "This is the content of the post.",
+    "status": "publish"
+}
+
+# Set up the request
+headers = {
+    "Content-Type": "application/json"
+}
+response = requests.post(
+    base_url,
+    headers=headers,
+    data=json.dumps(post_data),
+    auth=(username, password)
+)
+
+# Check the response
+if response.status_code == 201:
+    print("Post created successfully!")
+else:
+    print("Failed to create post. Status code:", response.status_code)
