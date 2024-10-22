@@ -1,0 +1,15 @@
+
+import random
+import string
+
+def generate_random_string(length):
+    letters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(letters) for i in range(length))
+random_string = generate_random_string(10)
+# Original text
+original_text = f"""{{1:F01PTSQGBB0XAAA0002000001}}{{2:I199PTSQGBB0XADMU3}}{{108:{{swiftuser4}}}}{{4:
+:20:{random_string}
+:79:SAA Tesla ADM Branch Filesystem
+look in incoming messages
+-}}"""
+print(original_text)

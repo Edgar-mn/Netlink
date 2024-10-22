@@ -1,0 +1,62 @@
+
+
+from ftplib import FTP_TLS
+import paramiko
+import os
+import random
+import string
+
+sftp_server = 'd1z.netlinksc.com'
+sftp_port = 8221
+sftp_user = 'swiftuser4'
+sftp_password = 'Password1!'
+local_path = r"C:\Users\user\Downloads\SU4.txt"  # Ensure this path is correct
+
+
+
+
+
+
+# Function to generate random string
+def generate_random_string(length):
+    letters = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters) for i in range(length))
+random_string = generate_random_string(10)
+# Original text
+MT = f"""{{1:F01PTSQGBB0XAAA0002000001}}{{2:I199PTSQGBB0XADMU3}}{{108:{{swiftuser4}}}}{{4:
+:20:{random_string}
+:79:SAA Tesla ADM Branch Filesystem
+look in incoming messages
+-}}"""
+print(MT)
+
+file_path = r"C:\Users\user\Downloads\SU4.txt"  # Ensure this path is correct
+# Generate a random string
+with open(file_path, 'w') as file:  # 'w' mode to write text
+    file.write(MT)
+
+# Replace part of the text
+
+remote_path = '/swiftuser4/MT/Sample/SU4.txt'
+try:
+    paramiko.util.log_to_file('paramiko.log')  # Enable logging
+
+    if not os.path.exists(local_path):
+        print(f"Local file does not exist: {local_path}")
+    else:
+        print(f"Local file found: {local_path}")
+
+    transport = paramiko.Transport((sftp_server, sftp_port))
+    transport.connect(username=sftp_user, password=sftp_password)
+
+    sftp = paramiko.SFTPClient.from_transport(transport)
+
+    print(f"Uploading {local_path} to {remote_path} on server")
+
+    sftp.put(local_path, remote_path)
+    
+    print('File uploaded successfully to the SFTP server.')
+    sftp.close()
+    transport.close()
+except Exception as e:
+    print(f'Error: {e}')
