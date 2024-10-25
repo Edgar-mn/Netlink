@@ -1,0 +1,85 @@
+# -*- coding: utf-8 -*-
+"""
+Created on 16/10/2024
+
+@author: Edgar
+"""
+from selenium import webdriver
+import time
+from PIL import Image
+#from Screenshot import Screenshot_clipping
+#import numpy as np
+#import cv2
+import pyautogui
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+
+time.sleep(2)
+
+# Get the screen size to ensure the coordinates fit your screen
+screenWidth, screenHeight = pyautogui.size()
+
+# Set the coordinates of the icon you want to click
+# You'll need to find the exact coordinates for your specific icon
+icon_x, icon_y = 910, 1050  # Replace with your icon's actual coordinates
+
+# Move the mouse to the icon's coordinates
+pyautogui.moveTo(icon_x, icon_y, duration=1)
+
+# Click the icon
+pyautogui.click()
+icon_x, icon_y = 910, 943  # Replace with your icon's actual coordinates
+
+# Move the mouse to the icon's coordinates
+pyautogui.moveTo(icon_x, icon_y, duration=1)
+
+# Click the icon
+pyautogui.click()
+
+# Example: Send keys to type a sentence
+pyautogui.typewrite("Write linkedin post about Netlink Testlabs with markdown so I can copy", interval=0.01)
+
+# Example: Send specific key presses (e.g., Enter key)
+pyautogui.press('enter')
+time.sleep(5)
+# Example: Send a combination of keys (e.g., Ctrl+C)
+
+
+icon_x, icon_y = 1240, 450  # Replace with your icon's actual coordinates
+time.sleep(5)
+
+# Move the mouse to the icon's coordinates
+pyautogui.moveTo(icon_x, icon_y, duration=1)
+pyautogui.click()
+
+print("Keystrokes sent.")
+print("Clicked on the desktop icon.")
+
+
+
+
+# Create an instance of ChromeOptions
+options = Options()
+
+# Specify the path to the Chrome profile directory
+options.add_argument(r"--user-data-dir=C:\Users\user\AppData\Local\Google\Chrome\User Data")
+options.add_argument(r"--profile-directory=Default")
+# Specify the path to your ChromeDriver executable
+service = Service(r"C:\Users\user\Downloads\chromedriver-win64\chromedriver-win64\chromedriver.exe")
+
+# Create the WebDriver instance using the Service object
+driver = webdriver.Chrome(service=service, options=options)
+# Specify the path to your ChromeDriver executable
+
+
+
+# Move the mouse to the icon's coordinates
+icon_x, icon_y = 450, 75  # Replace with your icon's actual coordinates
+
+# Move the mouse to the icon's coordinates
+pyautogui.moveTo(icon_x, icon_y, duration=1)
+time.sleep(5)
+# Click the icon
+pyautogui.click()
+#icon_x, icon_y = 910, 943  # Replace with your icon's actual coordinates
