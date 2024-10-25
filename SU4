@@ -1,5 +1,3 @@
-
-
 from ftplib import FTP_TLS
 import paramiko
 import os
