@@ -202,7 +202,7 @@ with codecs.open(file_path, 'w', encoding='utf-8') as file:  # 'w' mode to write
 
 remote_path = '/swiftuser4/MX/toswift/SU4.xml'
 try:
-    paramiko.util.log_to_file('paramiko.log')  # Enable logging
+    #paramiko.util.log_to_file('paramiko.log')  # Enable logging
 
     if not os.path.exists(local_path):
         print(f"Local file does not exist: {local_path}")
