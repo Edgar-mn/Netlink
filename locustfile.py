@@ -1,4 +1,6 @@
 from locust import HttpUser, task, between
+import matplotlib.pyplot as plt
+
 
 class WebsiteUser(HttpUser):
     wait_time = between(1, 5)
@@ -14,6 +16,8 @@ class WebsiteUser(HttpUser):
 
 if __name__ == "__main__":
     WebsiteUser().run()
+    
+    
 
 print("Content-type: text/html\n\n")
 print("<html><body>")

@@ -1,0 +1,36 @@
+import requests
+from bs4 import BeautifulSoup
+import openpyxl
+
+# Create an Excel workbook and sheet
+workbook = openpyxl.Workbook()
+sheet = workbook.active
+sheet.title = "Scraped Data"
+
+# Define the URL to scrape
+url = "https://hdvox.com"
+
+# Send a GET request to the URL
+response = requests.get(url)
+
+# Parse the HTML content
+soup = BeautifulSoup(response.content, "html.parser")
+
+# Define data variable by finding all h1 tags
+datas = soup.find_all("a")
+for data in datas:
+    print(data.get('href'))
+
+
+# Verify data scraping
+#for item in data:
+  #  print(item.text)
+
+# Write the data to the Excel sheet
+for row, item in enumerate(datas, start=1):
+    sheet[f"A{row}"] = item.text
+
+# Save the Excel workbook
+workbook.save("scraped_data.xlsx")
+
+print("Data saved to scraped_data.xlsx")
