@@ -13,10 +13,17 @@ url = "https://netlink-testlabs.com"
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "html.parser")
 
+
+'''links = soup.find_all('a')
+for link in links:
+    href = link.get('href')
+    if href:  # Check if href is not None
+        print(href)'''
 data = soup.find_all("a")
 
+#for row, item in enumerate(data, start=1):
+  #  sheet[f"A{row}"] = item.text
 for row, item in enumerate(data, start=1):
-    sheet[f"A{row}"] = item.text
-
+    sheet[f"A{row}"] = item.get('href')
 workbook.save("scraped_data.xlsx")
 print("Data saved to scraped_data.xlsx")
