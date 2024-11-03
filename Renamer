@@ -7,4 +7,4 @@ def rename_files(directory, prefix):
         dst = os.path.join(directory, dst)
         os.rename(src, dst)
 
-rename_files(r"C:\Users\user\Downloads\New folder", "MT")
+rename_files(r"C:\Users\user\Downloads\New folder", "MX")
