@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from the main branch
-                checkout scm
+                // Checkout the main branch
+                git branch: 'main', url: 'https://github.com/Edgar-mn/Netlink.git'
             }
         }
         
@@ -19,7 +19,7 @@ pipeline {
         stage('Run Python Script') {
             steps {
                 // Run the Python script using the full path to the Python executable
-                bat 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe Preval.py'
+                bat 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe Preval'
             }
         }
     }
