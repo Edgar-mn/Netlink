@@ -1,0 +1,28 @@
+from selenium import webdriver
+import time
+import datetime
+
+def main():
+    driver = webdriver.Chrome()
+    driver.get('https://nmmv2.netlink-testlabs.com')
+    time.sleep(2)
+    submit = driver.find_element("xpath", '//*[@id="qsLoginBtn"]')
+    submit=submit.click()
+    email = driver.find_element("xpath", '//*[@id="username"]')
+    email.send_keys('monitor@netlink-testlabs.com')
+    password = driver.find_element("xpath", '//*[@id="password"]')
+    password.send_keys('Monitor@123')
+    submit = driver.find_element("xpath", '/html/body/div[1]/main/section/div/div/div/form/div[2]/button')
+    submit.click()
+    # Get the current date and time
+    now = datetime.datetime.now()
+    formatted_time = now.strftime("%Y-%m-%d_%H-%M-%S")
+    
+    # Take the screenshot of the browser window and save it with the formatted date and time
+    driver.save_screenshot(f"NMMV2_{formatted_time}.png")
+
+    # Optional: Close the browser
+    driver.quit()
+
+if __name__ == '__main__':
+    main()

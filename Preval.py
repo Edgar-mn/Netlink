@@ -9,15 +9,9 @@ import time
 from selenium.webdriver.common.keys import Keys
 from PIL import Image
 import pyautogui
-from selenium.webdriver.chrome.options import Options
 
 def main():
     driver = webdriver.Chrome()
-    # Initialize Chrome options
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Enable headless mode
-    chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
-    chrome_options.add_argument("--window-size=1920x1080")  # Set window size
     driver.get('https://paymentpreval-sandbox.netlink-testlabs.com/')
     time.sleep(2)
     submit = driver.find_element("xpath", '//*[@id="qsLoginBtn"]')
