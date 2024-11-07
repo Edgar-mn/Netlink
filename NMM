@@ -26,8 +26,9 @@ def main():
     formatted_time = now.strftime("%Y-%m-%d_%H-%M-%S")
     time.sleep(2)
     # Take the screenshot of the browser window and save it with the formatted date and time
-    driver.save_screenshot(f"NMMV2_{formatted_time}.png")
-
+    #driver.save_screenshot(f"NMMV2_{formatted_time}.png")
+    screenshot_path = f"C:\\Users\\user\\OneDrive\\Documents\\Netlink\\screenshots\\NMMV2_{formatted_time}.png"
+    driver.save_screenshot(screenshot_path)
     # Optional: Close the browser
     driver.quit()
 
