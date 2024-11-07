@@ -1,8 +1,14 @@
 from selenium import webdriver
 import time
 import datetime
+from selenium.webdriver.chrome.options import Options
 
 def main():
+    # Initialize Chrome options
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Enable headless mode
+    chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
+    chrome_options.add_argument("--window-size=1920x1080")  # Set window size
     driver = webdriver.Chrome()
     driver.get('https://nmmv2.netlink-testlabs.com')
     time.sleep(2)
@@ -14,10 +20,11 @@ def main():
     password.send_keys('Monitor@123')
     submit = driver.find_element("xpath", '/html/body/div[1]/main/section/div/div/div/form/div[2]/button')
     submit.click()
+    time.sleep(2)
     # Get the current date and time
     now = datetime.datetime.now()
     formatted_time = now.strftime("%Y-%m-%d_%H-%M-%S")
-    
+    time.sleep(2)
     # Take the screenshot of the browser window and save it with the formatted date and time
     driver.save_screenshot(f"NMMV2_{formatted_time}.png")
 

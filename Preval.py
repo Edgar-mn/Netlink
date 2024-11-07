@@ -45,8 +45,8 @@ def main():
     inputElement.send_keys('dd3027ea-9460-480c-8ef4-0aed819a5ce8')
     submit = driver.find_element("xpath", '//*[@id="page"]/div/div[3]/table/tbody/tr[9]/td[1]/input')
     submit.click()
-   # image = pyautogui.screenshot()
-   # image1 = pyautogui.screenshot("image1.png")
+    image = pyautogui.screenshot()
+    image1 = pyautogui.screenshot("image1.png")
     time.sleep(10)
 if __name__ == '__main__':
     main()
