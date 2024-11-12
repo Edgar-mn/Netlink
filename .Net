@@ -1,0 +1,35 @@
+using System;
+using System.Text;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+
+namespace HashExampleApp
+{
+    public class HashGenerator
+    {
+        public async Task<string> SignedMessage(string swiftMessage)
+        {
+            string leftLauKey = "Abcdef1234567890";
+            string rightLauKey = "Abcdef1234567890";
+            string hashedMessage = string.Empty;
+
+            if (leftLauKey.Length == 16 && rightLauKey.Length == 16)
+            {
+                try
+                {
+                    byte[] swiftText = Encoding.ASCII.GetBytes(swiftMessage);
+                    byte[] swiftKey = Encoding.ASCII.GetBytes(leftLauKey + rightLauKey);
+                    HMACSHA256 hash = new HMACSHA256(swiftKey);
+                    byte[] hashValue = hash.ComputeHash(swiftText);
+                    hashedMessage = BitConverter.ToString(hashValue).Replace("-", "").ToUpper();
+                }
+                catch (Exception e)
+                {
+                    hashedMessage = e.Message.ToString();
+                }
+            }
+
+            return hashedMessage;
+        }
+    }
+}
