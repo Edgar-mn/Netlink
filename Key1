@@ -1,0 +1,25 @@
+import hmac
+import hashlib
+import time
+
+def signed_message(swift_message):
+    left_lau_key = "Abcdef0123456789"
+    right_lau_key = "Abcdef0123456789"
+    hashed_message = ""
+    
+    if len(left_lau_key) == 16 and len(right_lau_key) == 16:
+        try:
+            # Add a timestamp to the message to ensure uniqueness
+            timestamp = str(time.time()).encode('ascii')
+            swift_key = (left_lau_key + right_lau_key).encode('ascii')
+            swift_text = swift_message.encode('ascii') + timestamp
+            hmac_obj = hmac.new(swift_key, swift_text, hashlib.sha256)
+            hashed_message = hmac_obj.hexdigest().upper()
+        except Exception as e:
+            hashed_message = str(e)
+    
+    return hashed_message
+
+# Example usage
+message = "Hello, world!"
+print(signed_message(message))
