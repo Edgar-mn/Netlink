@@ -38,7 +38,7 @@ def send_to_sftp(local_file_path, remote_file_path, hostname, port, username, pa
 
 # Example usage with the specified file path
 input_file_path = "Z:\\2_Qualifications\\100_Message Samples ITB\\SU3\\MT\\SU3_MT_ACK.txt"
-output_file_path = "C:\\Users\\user\\Downloads\\MTLAU_ACK_modified.txt"
+output_file_path = "C:\\Users\\user\\Downloads\\MT_ACK_modified.txt"
 
 # Generate a new random reference
 new_reference = generate_random_reference()

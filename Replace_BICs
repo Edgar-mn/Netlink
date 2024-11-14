@@ -34,8 +34,8 @@ def process_files(input_folder, output_folder, new_bic_block_1, new_bic_block_2)
             print(f"Processed {filename} - Replaced BICs in Block 1 with '{new_bic_block_1}' and Block 2 with '{new_bic_block_2}'")
 
 # Example usage
-input_folder = r"C:\Users\user\Downloads\OldBICs"
-output_folder = r"C:\Users\user\Downloads\ProcessedFiles"
+input_folder = r"Z:\2_Qualifications\300_ITB_Customer_Issues\TerenceMuchenje_RISKFLOW LTD IRE\12Nov2024\Original"
+output_folder = r"Z:\2_Qualifications\300_ITB_Customer_Issues\TerenceMuchenje_RISKFLOW LTD IRE\11Nov2024\Original\Updated"
 new_bic_block_1 = "PTSQGBB0"  # New BIC code for Block 1
 new_bic_block_2 = "PTSQGBB0"  # New BIC code for Block 2
 
