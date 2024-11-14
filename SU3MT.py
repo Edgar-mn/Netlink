@@ -60,6 +60,6 @@ hostname = "cloudsftp.netlink-testlabs.com"  # Replace with your SFTP server hos
 port = 22  # Default SFTP port
 username = "swiftuser3"  # Replace with your SFTP server username
 password = "Password1!"  # Replace with your SFTP server password
-remote_file_path = "/MT/toswift/MTLAU_ACK_modified.txt"  # Replace with the desired path on the SFTP server
+remote_file_path = "/MT/toswift/MT_ACK_modified.txt"  # Replace with the desired path on the SFTP server
 
 send_to_sftp(output_file_path, remote_file_path, hostname, port, username, password)
