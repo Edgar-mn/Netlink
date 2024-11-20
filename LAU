@@ -4,7 +4,7 @@ import hashlib
 import re
 import ntpath
 
-LAU_KEY = b'Abcdef1234567890Abcdef1234567890'
+LAU_KEY = b'Abcdef0123456789Abcdef0123456789'
 
 # Extract {S: block from message
 def split_message(msg):
@@ -57,7 +57,7 @@ def write_message_to_file(file_path, message):
         file.write(message)
 
 # Example usage with the specified file path
-input_file_path = "C:\\Users\\user\\Downloads\\MTLAU_ACK.txt"
+input_file_path = "C:\\Users\\user\\Downloads\\test.txt"
 output_file_path = "C:\\Users\\user\\Downloads\\MTLAU_ACK_processed.txt"
 
 swift_message = read_message_from_file(input_file_path)

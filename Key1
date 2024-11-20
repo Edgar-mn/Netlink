@@ -23,8 +23,8 @@ def extract_fields(swift_message):
     return fields
 
 def generate_lau(swift_message):
-    left_lau_key = "Abcdef1234567890"
-    right_lau_key = "Abcdef1234567890"
+    left_lau_key = "Abcdef0123456789"
+    right_lau_key = "Abcdef0123456789"
     hashed_message = ""
 
     if len(left_lau_key) == 16 and len(right_lau_key) == 16:
