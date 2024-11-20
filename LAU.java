@@ -26,7 +26,9 @@ public class LAU {
 
     public static void main(String[] args) {
         // Example usage
-        String message = "{1:F01PTSQGBB0XAAA0183000001}{2:I199PTSQGBB0XJJJU3}{3:{108:swiftuser3}}{4: :20: :79:SAA AKURA JJJ Branch Filesystem look in incoming messages -}";
+        String message = String.join( "{1:F01PTSQGBB0XAAA0183000001}{2:I199PTSQGBB0XFITU3}{3:{108:swiftuser6lau}}{4:",
+            ":20:20112024 ",
+                        ":79:SAA AKURA JJJ Branch Filesystem look in incoming messages -}");
         String key = "Abcdef0123456789Abcdef0123456789";
         String lau = hmacSHA256(message, key);
         System.out.println("Generated HMAC-SHA256: " + lau);
