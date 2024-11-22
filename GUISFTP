@@ -1,0 +1,70 @@
+from flask import Flask, render_template, request, flash, redirect, url_for
+import random
+import string
+import re
+import paramiko
+
+# Function to generate a random reference
+def generate_random_reference(length=10):
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+# Function to change Field 20 in the SWIFT message
+def change_field_20(swift_message, new_reference):
+    updated_message = re.sub(r'(:20:)(\w+)', r'\1' + new_reference, swift_message)
+    return updated_message
+
+# Function to read the SWIFT message from a file
+def read_message_from_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
+
+# Function to write the modified message to a file
+def write_message_to_file(file_path, message):
+    with open(file_path, 'w') as file:
+        file.write(message)
+
+# Function to send a file to SFTP server
+def send_to_sftp(local_file_path, remote_file_path, hostname, port, username, password):
+    try:
+        transport = paramiko.Transport((hostname, port))
+        transport.connect(username=username, password=password)
+        sftp = paramiko.SFTPClient.from_transport(transport)
+        sftp.put(local_file_path, remote_file_path)
+        sftp.close()
+        transport.close()
+        return f"File successfully sent to {hostname}"
+    except Exception as e:
+        return f"Failed to send file to {hostname}: {e}"
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Change this to a random string for production
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/process', methods=['POST'])
+def process():
+    try:
+        input_file_path = "Z:\\2_Qualifications\\100_Message Samples ITB\\SU3\\MT\\SU3_MT_ACK.txt"
+        output_file_path = "C:\\Users\\user\\Downloads\\MT_ACK_modified.txt"
+
+        new_reference = generate_random_reference()
+        swift_message = read_message_from_file(input_file_path)
+        modified_message = change_field_20(swift_message, new_reference)
+        write_message_to_file(output_file_path, modified_message)
+
+        hostname = "cloudsftp.netlink-testlabs.com"
+        port = 22
+        username = "swiftuser3"
+        password = "Password1!"
+        remote_file_path = "/MT/toswift/MT_ACK_modified.txt"
+        result = send_to_sftp(output_file_path, remote_file_path, hostname, port, username, password)
+
+        flash(result)
+    except Exception as e:
+        flash(f"Error: {e}")
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
